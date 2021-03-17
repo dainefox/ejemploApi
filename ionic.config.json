@@ -1,0 +1,7 @@
+{
+  "name": "pruebaRest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
