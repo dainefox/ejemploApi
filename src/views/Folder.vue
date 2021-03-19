@@ -17,16 +17,29 @@
       </ion-header>
     
       <div id="container">
-        <strong class="capitalize">{{ $route.params.id }}</strong>
-        <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <strong class="capitalize">Pokemones</strong>
+        <p>Cantidad: {{ pokemones.length }} </p>
+
+        <ion-list>
+          <ion-item v-for="(pokemon, index) in pokemones" :key="`${index}-${pokemon.id_pokemon}`">
+            <ion-label>
+              <h2>{{ pokemon.nombre }}</h2>
+              <h3>Tipo: {{ pokemon.tipo }}</h3>
+              <p>Ataque: {{ pokemon.ataque }}</p>
+              <p>Defensa: {{ pokemon.defensa}}</p>
+              <p>Velocidad: {{ pokemon.velocidad}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
+import { onBeforeMount, ref } from 'vue';
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { GithubService } from '@/services';
+import { PokemonService } from '@/services';
 
 export default {
   name: 'Folder',
@@ -39,11 +52,18 @@ export default {
     IonTitle,
     IonToolbar
   },
- 
+  
+  setup() {
+    const pokemones = ref({});
+    const getPokemones = async () => {
+      const { pokemones: monsters } = await PokemonService.getPokemones();
+      pokemones.value = monsters;
+    };
 
-   beforeMount() {
-    GithubService.getPokemones().then(response => console.log(response))
-  }, 
+    onBeforeMount(() => getPokemones());
+
+    return { pokemones };
+  },
 }
 
 </script>

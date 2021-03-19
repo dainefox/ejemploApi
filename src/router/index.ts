@@ -4,12 +4,16 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '',
-    redirect: '/folder/Inbox'
+    redirect: '/folder/pokemones'
   },
   {
-    path: '/folder/:id',
+    path: '/folder/pokemones',
     component: () => import ('../views/Folder.vue')
-  }
+  },
+  {
+    path: '/folder/crear-pokemon',
+    component: () => import ('../views/Create.vue')
+  },
 ]
 
 const router = createRouter({

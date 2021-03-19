@@ -2,7 +2,7 @@ import ApiService from './index';
 
 const POKEMONES_API = 'https://andresriascos.pw/api/v1/pokemones';
 
-export const GithubService = {
+export const PokemonService = {
     async getPokemones() {
         const { data } = await ApiService.get(`${POKEMONES_API}`);
         return data;

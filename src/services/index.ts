@@ -10,6 +10,6 @@ export const apiService = {
     },
 };
 
-export { GithubService } from './Pokemones';
+export { PokemonService } from './Pokemones';
 
 export default apiService;
